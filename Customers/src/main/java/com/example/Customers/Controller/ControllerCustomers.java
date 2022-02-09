@@ -13,16 +13,35 @@ public class ControllerCustomers {
 
     @Autowired
     ServiceCustomers service;
-
+    // SELECT ALL CUSTOMERS
     @GetMapping("/getCustomers")
     public Flux<Customers> getCustomers()
     {
         return service.findAll();
     }
-
+    //SELECT CUSTOMERS WHERE NUMBER
+    @GetMapping("/getCustomersByNumber/{Number}")
+    public Flux<Customers> getCustomersByNumber(@PathVariable("Number") String Number)
+    {
+        return service.findCustomersByNumber(Number);
+    }
+    //INSERT CUSTOMERS
     @PostMapping("/postCustomers")
     Mono<Customers> postCustomers(@RequestBody Customers customer)
     {
         return service.save(customer);
     }
+    //UPDATE CUSTOMER
+    @PostMapping("/updCustomers")
+    Mono<Customers> updCustomers (@RequestBody Customers customer)
+    {
+        return service.updateCustomer(customer);
+    }
+    //DELETE CUSTOMER
+    @PostMapping("/delete/{id}")
+    void delete(@PathVariable("id") String id)
+    {
+         service.delete(id);
+    }
+
 }

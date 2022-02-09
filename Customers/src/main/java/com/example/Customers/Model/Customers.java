@@ -8,7 +8,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Getter
 @Setter
 @Document(collection = "Customers")
+//@Document
 public class Customers {
+
     @Id
     private String id;
     private String Name;

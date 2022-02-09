@@ -19,7 +19,23 @@ public class ServiceCustomersImpl implements ServiceCustomers {
     }
 
     @Override
+    public Flux<Customers> findCustomersByNumber(String Number) {
+        return repository.findAll().filter(x -> x.getNumber().equals(Number) );
+    }
+    @Override
     public Mono<Customers> save(Customers customers) {
         return repository.save(customers);
     }
+
+    @Override
+    public Mono<Customers> updateCustomer(Customers customers) {
+        return repository.save(customers);
+    }
+
+    @Override
+    public void delete(String id) {
+        repository.deleteById(id).subscribe();
+    }
+
+
 }
